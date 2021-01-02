@@ -18,7 +18,7 @@ function setTimer() {
     `${culcToTimeDisplay (countNum).min}:${toDoubleDigits(culcToTimeDisplay(countNum).sec)}`;
   }
 }
-
+//３分のボタン
 function getThreeBtn() {
   const three = parseInt(document.getElementById('threeMin').value);
   countNum = culcToSecond(0, three, 0);
