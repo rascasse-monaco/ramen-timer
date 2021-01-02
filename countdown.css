@@ -17,6 +17,18 @@
   border-style: none;
   border-radius: 3px;
 }
+.minSetButton {
+  color: #fff;
+  background-color: rgb(64, 101, 189);
+  font-size: 12px;
+  text-shadow: none;
+  width: 103px;
+  height: 30px;
+  margin-right: 5.5px;
+  margin-bottom: 5px;
+  border-style: none;
+  border-radius: 3px;
+}
 .numBox {
   color: black;
   background-color: #d6d3d3;
@@ -72,8 +84,7 @@
 }
 
 #timeArea {
-  font-size: 37px;
-  margin-left: 5px;
+  font-size: 82px;
 }
 
 #alarmStop {

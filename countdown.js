@@ -1,23 +1,38 @@
 'use strict'
-import { getTime, culcToTimeDisplay, toDoubleDigits } from './time-handle-util.js';
+import { culcToSecond, culcToTimeDisplay, toDoubleDigits } from './time-handle-util.js';
 import { removeAllChildren, createBtn, replaceSetButton, buttonEventListener  } from './button-util.js';
 
 let countNum = 0;
 let interVal = null;// setInterval代入用
 
-buttonEventListener('set', 'click', setTimer);
-
+buttonEventListener('threeMin', 'click', getThreeBtn);
+buttonEventListener('fourMin', 'click',  getFourBtn);
+buttonEventListener('fiveMin', 'click', getFiveBtn);
 //時間設定&ボタン置き換え実行用関数
 function setTimer() {  
-  countNum = getTime();
   if (countNum > 0) {
     removeAllChildren('settingArea');
-    removeAllChildren('buttonArea');
     createBtn('settingArea', 'start', '<i class="fas fa-play"></i> Start');  
     buttonEventListener('start', 'click', start);
     document.getElementById('timeArea').innerText =
-    `${toDoubleDigits(culcToTimeDisplay(countNum).hour)}:${toDoubleDigits(culcToTimeDisplay (countNum).min)}:${toDoubleDigits(culcToTimeDisplay(countNum).sec)}`;
-    }
+    `${culcToTimeDisplay (countNum).min}:${toDoubleDigits(culcToTimeDisplay(countNum).sec)}`;
+  }
+}
+
+function getThreeBtn() {
+  const three = parseInt(document.getElementById('threeMin').value);
+  countNum = culcToSecond(0, three, 0);
+  setTimer();
+}
+function getFourBtn() {
+  const four = parseInt(document.getElementById('fourMin').value);
+  countNum = culcToSecond(0, four, 0);
+  setTimer();
+}
+function getFiveBtn() {
+  const five = parseInt(document.getElementById('fiveMin').value);
+  countNum = culcToSecond(0, five, 0);
+  setTimer();
 }
 //カウントダウン実行関数
 function start() {
@@ -28,7 +43,7 @@ function start() {
     interVal = setInterval(() => {
       countNum --;
       document.getElementById('timeArea').innerText =
-      `${toDoubleDigits(culcToTimeDisplay(countNum).hour)}:${toDoubleDigits(culcToTimeDisplay(countNum).min)}:${toDoubleDigits  (culcToTimeDisplay(countNum).sec)}`;
+      `${culcToTimeDisplay(countNum).min}:${toDoubleDigits  (culcToTimeDisplay(countNum).sec)}`;
         if (countNum === 0) {
         removeAllChildren('settingArea');
         createBtn('settingArea', 'alarmStop', '<i class="fas fa-volume-mute fa-lg"></i> Sound Stop');
